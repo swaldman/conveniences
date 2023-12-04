@@ -18,7 +18,7 @@ object conveniences extends RootModule with ScalaModule with PublishModule {
     PomSettings(
       description = "Conveniences, usually extension methods, that seem useful across projects.",
       organization = "com.mchange",
-      url = "https://github.com/swaldman/convenience",
+      url = "https://github.com/swaldman/conveniences",
       licenses = Seq(License.`Apache-2.0`),
       versionControl = VersionControl.github("swaldman", "conveniences"),
       developers = Seq(
