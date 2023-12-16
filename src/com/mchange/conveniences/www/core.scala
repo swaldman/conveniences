@@ -7,9 +7,9 @@ private val CharsetUTF8 = scala.io.Codec.UTF8.charSet
 class FormDecodeException( msg : String, cause : Throwable = null ) extends Exception(msg,cause)
 
 private def decodeBinding( eb : String ) : Tuple2[String,String] =
-  val arr = eb.split("=")
-  if arr.length == 2 then
-    Tuple2( URLDecoder.decode(arr(0),CharsetUTF8), URLDecoder.decode(arr(1),CharsetUTF8) )
+  val equalsIndex = eb.indexOf("=")
+  if equalsIndex >= 0 then
+    Tuple2( URLDecoder.decode(eb.substring(0,equalsIndex),CharsetUTF8), URLDecoder.decode(eb.substring(equalsIndex+1),CharsetUTF8) )
   else
     throw new FormDecodeException(s"'${eb}' has no '=' to separate key and value.")
 
