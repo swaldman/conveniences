@@ -1,7 +1,7 @@
 package com.mchange.conveniences.string
 
 extension ( s : String )
-  def asOptionNotBlank( trim : Boolean ) : Option[String] =
+  def toOptionNotBlank( trim : Boolean ) : Option[String] =
     if s == null then
       None
     else
@@ -11,6 +11,6 @@ extension ( s : String )
       else
         None
 
-  def asOptionNotBlank : Option[String] = asOptionNotBlank( true )
+  def toOptionNotBlank : Option[String] = toOptionNotBlank( true )
 
 
