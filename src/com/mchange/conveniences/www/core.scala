@@ -18,7 +18,10 @@ def wwwFormEncodeUTF8( tups : Tuple2[String,String]* ) : String =
   encodedBindings.mkString("&")
 
 def wwwFormDecodeUTF8( s : String ) : Seq[Tuple2[String,String]] =
-  s.split("&").map( decodeBinding ).toSeq
+  if s.nonEmpty then
+    s.split("&").map( decodeBinding ).toSeq
+  else
+    Seq.empty
 
 def wwwFormFindAllValues( key : String, decoded : Seq[Tuple2[String,String]] ) : Seq[String] = decoded.filter( _(0) == key ).map( _(1) )
 def wwwFormFindFirstValue( key : String, decoded : Seq[Tuple2[String,String]] ) : Option[String] = decoded.find( _(0) == key ).map( _(1) )
