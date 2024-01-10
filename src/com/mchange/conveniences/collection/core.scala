@@ -13,3 +13,8 @@ extension[T,U <: Seq[T] | Set[T]] ( c : U )
       case 0 => notUnique( c, NotUnique.Empty )
       case 1 => c.head
       case n => notUnique( c, NotUnique.Multiple(n) )
+
+extension[A,CC[_],C] ( io : IterableOnceOps[Option[A],CC,C] )
+  def actuals : CC[A] = io.collect { case Some( a ) => a }
+
+
