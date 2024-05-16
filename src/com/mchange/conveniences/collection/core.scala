@@ -14,7 +14,16 @@ extension[T,U <: Seq[T] | Set[T]] ( c : U )
       case 1 => c.head
       case n => notUnique( c, NotUnique.Multiple(n) )
 
+// annoying to repeat this, but a bit less annoying than
+// using immutable.ArraySeq to write it in terms of Seq.uniqueOr
+extension[T]( a : Array[T] )
+  def uniqueOr( notUnique : (Array[T], NotUnique) => T ) : T =
+    a.size match
+      case 0 => notUnique( a, NotUnique.Empty )
+      case 1 => a.head
+      case n => notUnique( a, NotUnique.Multiple(n) )
+
 extension[A,CC[_],C] ( io : IterableOnceOps[Option[A],CC,C] )
-  def actuals : CC[A] = io.collect { case Some( a ) => a }
+  def actuals : CC[A] = io.collect { case Some( a ) => a } // a bit embarrassingly, just calling standard method flatten does the same work
 
 
