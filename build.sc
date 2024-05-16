@@ -13,7 +13,7 @@ object conveniences extends RootModule with ScalaModule with PublishModule {
   }
 
   override def artifactName = "conveniences"
-  override def publishVersion = T{"0.0.3"}
+  override def publishVersion = T{"0.0.4-SNAPSHOT"}
   override def pomSettings    = T{
     PomSettings(
       description = "Conveniences, usually extension methods, that seem useful across projects.",
