@@ -1,6 +1,8 @@
 package com.mchange.conveniences.string
 
 extension ( s : String )
+  def nullOrBlank : Boolean = s == null || s.trim.isEmpty
+
   def toOptionNotBlank( trim : Boolean ) : Option[String] =
     if s == null then
       None
