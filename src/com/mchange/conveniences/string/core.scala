@@ -21,6 +21,6 @@ def pathJoin( pathSeparator : Char )( path0 : String, path1 : String ) : String 
   (firstEndsWith, secondBeginsWith ) match
     case (true, true)                  => path0 + path1.tail
     case (true, false) | (false, true) => path0 + path1
-    case (false, false)                => (path0 + '/') + path1
+    case (false, false)                => (path0 + pathSeparator) + path1
 
 def pathJoin( path0 : String, path1 : String ) : String = pathJoin('/')(path0, path1)
