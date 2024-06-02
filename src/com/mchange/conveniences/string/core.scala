@@ -24,3 +24,15 @@ def pathJoin( pathSeparator : Char )( path0 : String, path1 : String ) : String 
     case (false, false)                => (path0 + pathSeparator) + path1
 
 def pathJoin( path0 : String, path1 : String ) : String = pathJoin('/')(path0, path1)
+
+private def commaListXXX(xxx : String)( seq : Seq[String] ) : Option[String] =
+  seq.length match
+    case 0 => None
+    case 1 => Some( seq.head )
+    case 2 => Some( seq.head + s" $xxx " + seq.last )
+    case n =>
+      val anded = seq.init :+ s"$xxx ${seq.last}"
+      Some( anded.mkString(", ") )
+
+def commaListAnd( seq : Seq[String] ) : Option[String] = commaListXXX("and")(seq)
+def commaListOr( seq : Seq[String] )  : Option[String] = commaListXXX("or")(seq)
