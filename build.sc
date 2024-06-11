@@ -4,16 +4,14 @@ import mill.scalalib.publish._
 
 object conveniences extends RootModule with ScalaModule with PublishModule {
 
-  val JakartaMailVersion = "2.0.1"
-
-  override def scalaVersion = "3.3.1"
+  override def scalaVersion = "3.3.3"
 
   def scalacOptions = T {
     super.scalacOptions() :+ "-deprecation" //++ Seq("-explain")
   }
 
   override def artifactName = "conveniences"
-  override def publishVersion = T{"0.0.4"}
+  override def publishVersion = T{"0.0.5-SNAPSHOT"}
   override def pomSettings    = T{
     PomSettings(
       description = "Conveniences, usually extension methods, that seem useful across projects.",
