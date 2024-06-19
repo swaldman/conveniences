@@ -18,6 +18,11 @@ extension[T,U <: Seq[T] | Set[T]] ( c : U )
       case 0 => None
       case 1 => Some(c.head)
       case n => None
+  def zeroOrOne : Either[Int,Option[T]] =
+    c.size match
+      case 0 => Right(None)
+      case 1 => Right(Some(c.head))
+      case n => Left(n)
 
 // annoying to repeat this, but a bit less annoying than
 // using immutable.ArraySeq to write it in terms of Seq.uniqueOr
@@ -32,6 +37,11 @@ extension[T]( a : Array[T] )
       case 0 => None
       case 1 => Some(a.head)
       case n => None
+  def zeroOrOne : Either[Int,Option[T]] =
+    a.size match
+      case 0 => Right(None)
+      case 1 => Right(Some(a.head))
+      case n => Left(n)
 
 extension[A,CC[_],C] ( io : IterableOnceOps[Option[A],CC,C] )
   def actuals : CC[A] = io.collect { case Some( a ) => a } // a bit embarrassingly, just calling standard method flatten does the same work
