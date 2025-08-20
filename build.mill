@@ -1,18 +1,21 @@
-import mill._
-import mill.scalalib._
-import mill.scalalib.publish._
+//| mill-version: 1.0.3
+//| mill-jvm-version: 17
+//+---------------------
 
-object conveniences extends RootModule with ScalaModule with PublishModule {
+package build
+
+import mill.*, scalalib.*, publish.*
+
+object conveniences extends ScalaModule with PublishModule:
 
   override def scalaVersion = "3.3.6"
 
-  def scalacOptions = T {
+  def scalacOptions = Task:
     super.scalacOptions() :+ "-deprecation" //++ Seq("-explain")
-  }
 
   override def artifactName = "conveniences"
-  override def publishVersion = T{"0.0.6-SNAPSHOT"}
-  override def pomSettings    = T{
+  override def publishVersion = Task("0.0.6-SNAPSHOT")
+  override def pomSettings    = Task:
     PomSettings(
       description = "Conveniences, usually extension methods, that seem useful across projects.",
       organization = "com.mchange",
@@ -20,10 +23,9 @@ object conveniences extends RootModule with ScalaModule with PublishModule {
       licenses = Seq(License.`Apache-2.0`),
       versionControl = VersionControl.github("swaldman", "conveniences"),
       developers = Seq(
-	Developer("swaldman", "Steve Waldman", "https://github.com/swaldman")
+        Developer("swaldman", "Steve Waldman", "https://github.com/swaldman")
       )
     )
-  }
-}
+
 
 
