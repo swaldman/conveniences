@@ -1,21 +1,21 @@
 //| mill-version: 1.0.3
 //| mill-jvm-version: 17
-//+---------------------
+//+---------------------------------------------------------------
 
 package build
 
-import mill.*, scalalib.*, publish.*
+import mill.*, scalalib.*, publish._
 
-object conveniences extends ScalaModule with PublishModule:
+object `package` extends ScalaModule with PublishModule:
 
   override def scalaVersion = "3.3.6"
 
-  def scalacOptions = Task:
+  override def scalacOptions = Task:
     super.scalacOptions() :+ "-deprecation" //++ Seq("-explain")
 
   override def artifactName = "conveniences"
-  override def publishVersion = Task("0.0.6-SNAPSHOT")
-  override def pomSettings    = Task:
+  override def publishVersion = "0.0.6-SNAPSHOT"
+  override def pomSettings    =
     PomSettings(
       description = "Conveniences, usually extension methods, that seem useful across projects.",
       organization = "com.mchange",
