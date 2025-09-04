@@ -4,17 +4,19 @@
 
 package build
 
-import mill.*, scalalib.*, publish._
+import mill.*, scalalib.*, scalajslib.*, publish.*
 
-object `package` extends ScalaModule with PublishModule:
 
+trait ConveniencesScalaModule extends ScalaModule, SonatypeCentralPublishModule:
   override def scalaVersion = "3.3.6"
 
   override def scalacOptions = Task:
     super.scalacOptions() :+ "-deprecation" //++ Seq("-explain")
 
   override def artifactName = "conveniences"
+
   override def publishVersion = "0.0.6-SNAPSHOT"
+
   override def pomSettings    =
     PomSettings(
       description = "Conveniences, usually extension methods, that seem useful across projects.",
@@ -26,6 +28,17 @@ object `package` extends ScalaModule with PublishModule:
         Developer("swaldman", "Steve Waldman", "https://github.com/swaldman")
       )
     )
+
+trait ConveniencesScalaJSModule extends ConveniencesScalaModule,ScalaJSModule:
+  override def scalaJSVersion = "1.19.0"
+
+trait ConveniencesSharedModule extends ConveniencesScalaModule, PlatformScalaModule
+
+object `package` extends Module:
+  object jvm extends ConveniencesSharedModule
+  object js extends ConveniencesScalaJSModule,ConveniencesSharedModule
+
+
 
 
 
