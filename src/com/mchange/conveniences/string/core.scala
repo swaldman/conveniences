@@ -76,9 +76,9 @@ private val Limit_TiB   = 1024 * Limit_GiB
 def humanReadableByteLength( len : Long, decimals : Int = 2 ) : String =
   require( len >= 0, s"Byte lengths must be positive, $len is invalid.")
   if len < Limit_Bytes then s"${len} bytes"
-  else if len < Limit_KiB then String.format( s"%.${decimals}f KiB", len / Limit_Bytes )
-  else if len < Limit_MiB then String.format( s"%.${decimals}f MiB", len / Limit_KiB )
-  else if len < Limit_GiB then String.format( s"%.${decimals}f GiB", len / Limit_MiB )
-  else String.format( s"%.${decimals}f TiB", len / Limit_GiB )
+  else if len < Limit_KiB then String.format( s"%.${decimals}f KiB", len.toDouble / Limit_Bytes )
+  else if len < Limit_MiB then String.format( s"%.${decimals}f MiB", len.toDouble / Limit_KiB )
+  else if len < Limit_GiB then String.format( s"%.${decimals}f GiB", len.toDouble / Limit_MiB )
+  else String.format( s"%.${decimals}f TiB", len.toDouble / Limit_GiB )
 
 
