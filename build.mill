@@ -1,4 +1,4 @@
-//| mill-version: 1.0.3
+//| mill-version: 1.0.6
 //| mill-jvm-version: 17
 //+---------------------------------------------------------------
 
@@ -15,7 +15,7 @@ trait ConveniencesScalaModule extends ScalaModule, SonatypeCentralPublishModule:
 
   override def artifactName = "conveniences"
 
-  override def publishVersion = "0.0.6-SNAPSHOT"
+  override def publishVersion = "0.0.6"
 
   override def pomSettings    =
     PomSettings(
@@ -30,7 +30,7 @@ trait ConveniencesScalaModule extends ScalaModule, SonatypeCentralPublishModule:
     )
 
 trait ConveniencesScalaJSModule extends ConveniencesScalaModule,ScalaJSModule:
-  override def scalaJSVersion = "1.19.0"
+  override def scalaJSVersion = "1.20.0"
 
 trait ConveniencesSharedModule extends ConveniencesScalaModule, PlatformScalaModule
 
